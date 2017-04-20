@@ -4,7 +4,7 @@
 
         <header class="header">
             <h1>Todos</h1>
-            <input type="text" class="new-todo" placeholder="Ajouter une tache" v-model="newTodo">
+            <input type="text" class="new-todo" placeholder="Ajouter une tache" v-model="newTodo" @keyup.enter="addTodo">
         </header>
 
         <div class="main">
@@ -22,9 +22,10 @@
 </template>
 
 <script>
-    /* eslint-disable space-before-function-paren */
+    /* eslint-disable space-before-function-paren,no-multiple-empty-lines,no-trailing-spaces */
 
     export default {
+
       data() {
         return {
           todos: [{
@@ -33,7 +34,18 @@
           }],
           newTodo: ''
         }
+      },
+
+      methods: {
+        addTodo() {
+          this.todos.push({
+            completed: false,
+            name: this.newTodo
+          })
+          this.newTodo = ''
+        }
       }
+
     }
 </script>
 
