@@ -20,6 +20,11 @@
 
         <footer class="footer">
             <span class="todo-count"><strong>{{ remaining }}</strong> tâche(s) à faire</span>
+            <ul class="filters">
+                <li><a class="selected" href="#">Toutes</a></li>
+                <li><a href="#">A faires</a></li>
+                <li><a href="#">Faites</a></li>
+            </ul>
         </footer>
 
     </section>
