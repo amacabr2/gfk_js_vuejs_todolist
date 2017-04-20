@@ -4,14 +4,14 @@
 
         <header class="header">
             <h1>Todos</h1>
-            <input type="text" class="new-todo" placeholder="Ajouter une tache">
+            <input type="text" class="new-todo" placeholder="Ajouter une tache" v-model="newTodo">
         </header>
 
         <div class="main">
             <ul class="todo-list">
-                <li class="todo">
+                <li class="todo" v-for="todo in todos">
                     <div class="view">
-                        <label>Nom de notre tâche</label>
+                        <label>{{ todo.name }}</label>
                     </div>
                 </li>
             </ul>
@@ -22,7 +22,18 @@
 </template>
 
 <script>
+    /* eslint-disable space-before-function-paren */
+
     export default {
+      data() {
+        return {
+          todos: [{
+            name: 'Tache de test',
+            complete: false
+          }],
+          newTodo: ''
+        }
+      }
     }
 </script>
 
