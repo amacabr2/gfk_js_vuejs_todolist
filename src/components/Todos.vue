@@ -1,10 +1,23 @@
 <template>
 
-    <sections class="todoapp">
+    <section class="todoapp">
+
         <header class="header">
             <h1>Todos</h1>
+            <input type="text" class="new-todo" placeholder="Ajouter une tache">
         </header>
-    </sections>
+
+        <div class="main">
+            <ul class="todo-list">
+                <li class="todo">
+                    <div class="view">
+                        <label>Nom de notre tâche</label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </section>
 
 </template>
 
@@ -13,4 +26,4 @@
     }
 </script>
 
-<style></style>
+<style src="./todos.css"></style>
