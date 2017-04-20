@@ -9,7 +9,7 @@
 
         <div class="main">
             <ul class="todo-list">
-                <li class="todo" v-for="todo in todos" :class="{completed: todo.completed}">
+                <li class="todo" v-for="todo in filteredTodos" :class="{completed: todo.completed}">
                     <div class="view">
                         <input type="checkbox" v-model="todo.completed" class="toggle">
                         <label>{{ todo.name }}</label>
@@ -21,9 +21,9 @@
         <footer class="footer">
             <span class="todo-count"><strong>{{ remaining }}</strong> tâche(s) à faire</span>
             <ul class="filters">
-                <li><a class="selected" href="#">Toutes</a></li>
-                <li><a href="#">A faires</a></li>
-                <li><a href="#">Faites</a></li>
+                <li><a :class="{selected: filter === 'all'}" @click.prevent="filter = 'all'">Toutes</a></li>
+                <li><a :class="{selected: filter === 'todo'}" @click.prevent="filter = 'todo'">A faires</a></li>
+                <li><a :class="{selected: filter === 'done'}" @click.prevent="filter = 'done'">Faites</a></li>
             </ul>
         </footer>
 
@@ -38,11 +38,9 @@
 
       data() {
         return {
-          todos: [{
-            name: 'Tache de test',
-            completed: false
-          }],
-          newTodo: ''
+          todos: [],
+          newTodo: '',
+          filter: 'all'
         }
       },
 
@@ -59,6 +57,14 @@
       computed: {
         remaining() {
           return this.todos.filter(todo => !todo.completed).length
+        },
+        filteredTodos() {
+          if (this.filter === 'todo') {
+            return this.todos.filter(todo => !todo.completed)
+          } else if (this.filter === 'done') {
+            return this.todos.filter(todo => todo.completed)
+          }
+          return this.todos
         }
       }
 
