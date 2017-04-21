@@ -8,6 +8,9 @@
         </header>
 
         <div class="main">
+
+            <input type="checkbox" class="toggle-all" v-model="alldone">
+
             <ul class="todo-list">
                 <li class="todo" v-for="todo in filteredTodos" :class="{completed: todo.completed}">
                     <div class="view">
@@ -16,6 +19,7 @@
                     </div>
                 </li>
             </ul>
+
         </div>
 
         <footer class="footer">
@@ -38,6 +42,7 @@
 
       data() {
         return {
+          alldone: false,
           todos: [],
           newTodo: '',
           filter: 'all'
