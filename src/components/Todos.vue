@@ -30,6 +30,7 @@
                 <li><a :class="{selected: filter === 'todo'}" @click.prevent="filter = 'todo'">A faires</a></li>
                 <li><a :class="{selected: filter === 'done'}" @click.prevent="filter = 'done'">Faites</a></li>
             </ul>
+            <button class="clear-completed" v-show="doneTodos" @click="deleteCompleted">Supprimer les tâches finies</button>
         </footer>
 
     </section>
