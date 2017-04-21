@@ -18,7 +18,7 @@
                         <label @dblclick="editTodo(todo)">{{ todo.name }}</label>
                         <button class="destroy" @click.prevent="deleteTodo(todo)"></button>
                     </div>
-                    <input type="text" class="edit" v-model="todo.name" @keyup.enter="doneEdit" v-focus="todo === editing" @blur="doneEdit">
+                    <input type="text" class="edit" v-model="todo.name" @keyup.esc="cancelEdit" @keyup.enter="doneEdit" v-focus="todo === editing" @blur="doneEdit">
                 </li>
             </ul>
 
@@ -50,7 +50,8 @@
           todos: [],
           newTodo: '',
           filter: 'all',
-          editing: null
+          editing: null,
+          oldTodo: ''
         }
       },
 
@@ -74,10 +75,16 @@
 
         editTodo(todo) {
           this.editing = todo
+          this.oldTodo = todo.name
         },
 
         doneEdit() {
           this.editing = null
+        },
+
+        cancelEdit() {
+          this.editing.name = this.oldTodo
+          this.doneEdit()
         }
 
       },
