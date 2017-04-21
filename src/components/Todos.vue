@@ -9,7 +9,7 @@
 
         <div class="main">
 
-            <input type="checkbox" class="toggle-all" v-model="alldone">
+            <input type="checkbox" class="toggle-all" v-model="allDone">
 
             <ul class="todo-list">
                 <li class="todo" v-for="todo in filteredTodos" :class="{completed: todo.completed}">
@@ -42,7 +42,6 @@
 
       data() {
         return {
-          alldone: false,
           todos: [],
           newTodo: '',
           filter: 'all'
@@ -60,9 +59,23 @@
       },
 
       computed: {
+
+        allDone: {
+          get() {
+            return this.remaining === 0
+          },
+          set(value) {
+            console.log(value)
+            this.todos.forEach(todo => {
+              todo.completed = value
+            })
+          }
+        },
+
         remaining() {
           return this.todos.filter(todo => !todo.completed).length
         },
+
         filteredTodos() {
           if (this.filter === 'todo') {
             return this.todos.filter(todo => !todo.completed)
@@ -71,6 +84,7 @@
           }
           return this.todos
         }
+
       }
 
     }
