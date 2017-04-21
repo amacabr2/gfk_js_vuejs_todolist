@@ -23,7 +23,7 @@
 
         </div>
 
-        <footer class="footer" v-show="todos.length > 0">
+        <footer class="footer" v-show="hasTodos">
             <span class="todo-count"><strong>{{ remaining }}</strong> tâche(s) à faire</span>
             <ul class="filters">
                 <li><a :class="{selected: filter === 'all'}" @click.prevent="filter = 'all'">Toutes</a></li>
@@ -90,6 +90,10 @@
             return this.todos.filter(todo => todo.completed)
           }
           return this.todos
+        },
+
+        hasTodos() {
+          return this.todos.length > 0
         }
 
       }
